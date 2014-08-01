@@ -1,31 +1,49 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ABN
- * Date: 13/07/2014
- * Time: 17:09
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
-try {
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
+*/
 
-    $consumer_key = 'key';
-    $consumer_secret = 'secret';
-    $url = 'http://service.planeonline.local/oauth/request_token';
+require __DIR__.'/../bootstrap/autoload.php';
 
-    $oauth = new OAuth($consumer_key, $consumer_secret, OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_URI);
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let's turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight these users.
+|
+*/
 
-    $request_token_info = $oauth->getAccessToken($url, 'http://service.planeonline.local/');
+$app = require_once __DIR__.'/../bootstrap/start.php';
 
-    $request_token_info = array_keys($request_token_info);
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can simply call the run method,
+| which will execute the request and send the response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have whipped up for them.
+|
+*/
 
-
-    if (!empty($request_token_info)) {
-        print_r(bin2hex($request_token_info[0]));
-        //print_r($oauth->getLastResponse());
-    } else {
-        print "Failed fetching request token, response was: " . $oauth->getLastResponse();
-    }
-
-} catch (Exception $e) {
-    var_dump($e);
-}
+$app->run();
