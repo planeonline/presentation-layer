@@ -19,6 +19,8 @@ Route::get('/', function()
 
 Route::get('users', 'UserController@getIndex');
 
+Route::get('planes', 'PlaneController@getIndex');
+
 //Route::get('users', function()
 //{
 //    return 'Users!';
