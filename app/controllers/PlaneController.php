@@ -15,7 +15,7 @@ class PlaneController extends BaseController {
 	|
 	*/
 
-	public function getIndex()
+	public function indexAction()
 	{
 
         /** @var $restClient \Abn\Curl\CurlRestClient  */

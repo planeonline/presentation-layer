@@ -12,13 +12,10 @@
     <title>Theme Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-3.2.0/dist/css/Spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.2.0/dist/css/Spacelab/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="bootstrap-3.2.0/dist/css/Spacelab/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap-3.2.0/dist/css/navbar-fixed-top.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="theme.css" rel="stylesheet">
+    <link href="/bootstrap-3.2.0/dist/css/Spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.2.0/dist/css/navbar-fixed-top.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -50,14 +47,13 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="planes">Planes</a></li>
+                <li class="active"><a href="/planes">Planes</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                    <a href="/users" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="/users/registration">Register</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Nav header</li>

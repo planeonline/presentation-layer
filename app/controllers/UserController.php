@@ -15,9 +15,14 @@ class UserController extends BaseController {
 	|
 	*/
 
-	public function getIndex()
+	public function indexAction()
 	{
-		return View::make('user');
+		return View::make('user.index');
 	}
+
+    public function registrationAction(){
+//        return View::make('user.index');
+        return View::make('user.registration');
+    }
 
 }

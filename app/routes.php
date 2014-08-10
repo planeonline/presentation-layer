@@ -17,9 +17,10 @@ Route::get('/', function()
 });
 
 
-Route::get('users', 'UserController@getIndex');
+Route::get('users', 'UserController@indexAction');
+Route::get('users/registration', 'UserController@registrationAction');
 
-Route::get('planes', 'PlaneController@getIndex');
+Route::get('planes', 'PlaneController@indexAction');
 
 //Route::get('users', function()
 //{

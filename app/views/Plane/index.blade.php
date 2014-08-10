@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.default')
 
 @section('content')
 Planes!
@@ -17,4 +17,5 @@ Planes!
     <dd>status : {{ $plane->status }}</dd>
 @endforeach
 </dl>
+
 @stop
