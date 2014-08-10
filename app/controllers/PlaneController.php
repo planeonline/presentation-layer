@@ -17,7 +17,16 @@ class PlaneController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('plane.index');
+
+        /** @var $restClient \Abn\Curl\CurlRestClient  */
+        $restClient = App::make('restClient');
+
+        $restClient->setUrl('http://service.planeonline.local/plane');
+//        $result =$restClient->get(array('id'=>3));
+        $result =$restClient->get();
+
+
+		return View::make('plane.index')->with('planes',$result->results[0]->result);
 	}
 
 }
