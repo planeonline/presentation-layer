@@ -25,6 +25,7 @@ class UserController extends BaseController {
 
         if(Input::get())
         {
+            Validator::extend('uniqueMail', 'UserController@checkEmailIsUnique');
 
             $data = Input::All();
 
@@ -34,8 +35,11 @@ class UserController extends BaseController {
                     '_token' => 'required|min:5',
                     'firstname' => 'required|min:3',
                     'lastname' => 'required|min:5',
-                    'email' => 'required|email',
+                    'email' => 'required|email|uniqueMail',
                     'password' => 'required|min:3|confirmed'
+                ),
+                array(
+                    'unique_mail' => 'An account already is using <strong>"'.$data['email']. '"</strong> E-Mail address'
                 )
             );
 
@@ -60,7 +64,6 @@ class UserController extends BaseController {
 
             $result =$restClient->post($postRwBody);
 
-//            var_dump($result);
             var_dump($result,$result->results);
 
         }
@@ -68,8 +71,20 @@ class UserController extends BaseController {
         {
             return View::make('user.registration');
         }
-//        return View::make('user.index');
 
+
+    }
+
+    public function checkEmailIsUnique($attribute, $value, $parameters){
+
+        /** @var $restClient \Abn\Curl\CurlRestClient  */
+        $restClient = App::make('restClient');
+
+        $restClient->setUrl('http://service.planeonline.local/user');
+        $result =$restClient->get(array($attribute=>$value));
+        $result =$restClient->get();
+
+        return !$result->results[0]->metadata->count;
     }
 
 }
