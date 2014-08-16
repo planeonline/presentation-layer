@@ -85,6 +85,23 @@ class CurlRestClient
         return $this->format($result);
     }
 
+    public function post($params, $url=null)
+    {
+
+        if(!is_null($url)){
+            $this->setUrl($url);
+        }
+
+        $postFields = is_array($params) || is_object($params) ? http_build_query($params) : $params;
+
+        curl_setopt($this->getResource(),CURLOPT_POST, true);
+        curl_setopt($this->getResource(),CURLOPT_POSTFIELDS, $postFields);
+
+        $result = curl_exec($this->getResource());
+
+        return $this->format($result);
+    }
+
     public function getInfo($key=null){
 
         $info = curl_getinfo($this->resource);

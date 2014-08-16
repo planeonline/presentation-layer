@@ -17,8 +17,9 @@ Route::get('/', function()
 });
 
 
-Route::get('users', 'UserController@indexAction');
-Route::get('users/registration', 'UserController@registrationAction');
+Route::get('user', 'UserController@indexAction');
+Route::get('user/registration', 'UserController@registrationAction');
+Route::post('user/registration', 'UserController@registrationAction');
 
 Route::get('planes', 'PlaneController@indexAction');
 
