@@ -75,16 +75,33 @@ class UserController extends BaseController {
 
     }
 
-    public function checkEmailIsUnique($attribute, $value, $parameters){
+    public function checkEmailIsUniqueAjax(){
+        return 'asd123';
+    }
+
+    public function checkEmailIsUnique($attribute=null, $value=null, $parameters=null){
+
+        if(is_null($attribute)){
+
+            $email = Input::get('email');
+            $attribute = 'email';
+            $value = is_null(Input::get('email'))? 'abn@webit4.me' : $email;
+            $isDirectRequest = true;
+        }
 
         /** @var $restClient \Abn\Curl\CurlRestClient  */
         $restClient = App::make('restClient');
 
         $restClient->setUrl('http://service.planeonline.local/user');
         $result =$restClient->get(array($attribute=>$value));
-        $result =$restClient->get();
+        $result = !$restClient->get()->results[0]->metadata->count;
 
-        return !$result->results[0]->metadata->count;
+        if(isset($isDirectRequest)){
+
+            $result = $result ? 'free' : 'taken';
+        }
+
+        return $result;
     }
 
 }
