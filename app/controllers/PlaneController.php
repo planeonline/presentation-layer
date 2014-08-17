@@ -21,10 +21,12 @@ class PlaneController extends BaseController {
         /** @var $restClient \Abn\Curl\CurlRestClient  */
         $restClient = App::make('restClient');
 
-        $restClient->setUrl('http://service.planeonline.local/plane');
-//        $result =$restClient->get(array('id'=>3));
+        $restClient->setUrl('http://service.planeonline.local/user');
+        $result =$restClient->get(array('email'=>'abn@webit42.me'));
         $result =$restClient->get();
 
+        var_dump($result->results[0]->metadata->count);
+        die();
 
 		return View::make('plane.index')->with('planes',$result->results[0]->result);
 	}

@@ -2,18 +2,10 @@
 
 class UserController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+
+    const USER_STATUS_DELETED = 0;
+    const USER_STATUS_PENDING = 1;
+    const USER_STATUS_ACTIVE = 2;
 
 	public function indexAction()
 	{
@@ -75,10 +67,6 @@ class UserController extends BaseController {
 
     }
 
-    public function checkEmailIsUniqueAjax(){
-        return 'asd123';
-    }
-
     public function checkEmailIsUnique($attribute=null, $value=null, $parameters=null){
 
         if(is_null($attribute)){
@@ -93,12 +81,12 @@ class UserController extends BaseController {
         $restClient = App::make('restClient');
 
         $restClient->setUrl('http://service.planeonline.local/user');
-        $result =$restClient->get(array($attribute=>$value));
+        $result =$restClient->get(array($attribute=>$value,'status' => self::USER_STATUS_ACTIVE));
         $result = !$restClient->get()->results[0]->metadata->count;
 
         if(isset($isDirectRequest)){
 
-            $result = $result ? 'free' : 'taken';
+            $result = $result ? 'true' : 'false';
         }
 
         return $result;

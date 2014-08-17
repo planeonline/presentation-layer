@@ -17,8 +17,6 @@
 @endif
 
 
-
-
 <div class="panel panel-default">
 
     <div class="panel-body">
@@ -28,42 +26,46 @@
 
         <div class="form-group {{ isset($failedFields) && in_array('firstname',$failedFields)? 'alert-warning' :''}}">
             {{ Form::label('firstname', 'Firstname', array('class' => 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
+            <div class="col-md-10">
                 {{ Form::text('firstname', isset($data)? $data['firstname']:'', array('class' => 'form-control')) }}
             </div>
         </div>
 
         <div class="form-group {{ isset($failedFields) && in_array('lastname',$failedFields)? 'alert-warning' :''}}">
             {{ Form::label('lastname', 'Lastname', array('class' => 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
+            <div class="col-md-10">
                 {{ Form::text('lastname', isset($data)? $data['lastname']:'', array('class' => 'form-control')) }}
             </div>
         </div>
 
         <div class="form-group {{ isset($failedFields) && in_array('email',$failedFields)? 'alert-warning' :''}}">
             {{ Form::label('email', 'E-Mail Address', array('class' => 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
+            <div class="col-md-8">
                 {{ Form::text('email', isset($data)? $data['email']:'', array('class' => 'form-control')) }}
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" id="checkEmailUniqueness">Check if Available!</button>
             </div>
         </div>
 
         <div class="form-group {{ isset($failedFields) && in_array('password',$failedFields)? 'alert-warning' :''}}">
             {{ Form::label('password', 'Password', array('class' => 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
+            <div class="col-md-10">
                 {{ Form::password('password', array('class' => 'form-control')) }}
             </div>
         </div>
 
-        <div class="form-group {{ isset($failedFields) && in_array('password-confirm',$failedFields)? 'alert-warning' :''}}">
+        <div
+            class="form-group {{ isset($failedFields) && in_array('password-confirm',$failedFields)? 'alert-warning' :''}}">
             {{ Form::label('password_confirmation', 'Confirm Pass', array('class' => 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
+            <div class="col-md-10">
                 {{ Form::password('password_confirmation', array('class' => 'form-control')) }}
             </div>
         </div>
 
 
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-2 col-md-10">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox"> Remember me
@@ -74,7 +76,7 @@
 
 
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-2 col-md-10">
                 {{ Form::submit('Sign up', array('class' => 'btn btn-default')) }}
             </div>
         </div>
@@ -82,5 +84,10 @@
         {{ Form::close() }}
     </div>
 </div>
+
+
+@section('bottomQueries')
+{{ HTML::script('js/emailUniqueness.js') }}
+@stop
 
 @stop
